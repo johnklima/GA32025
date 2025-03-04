@@ -19,6 +19,10 @@ public class MIDI_IN : MonoBehaviour
 
     [DllImport("DLLtry.dll")]
     private static extern int MIDI_Start();
+
+    [DllImport("DLLtry.dll")]
+    private static extern int MIDI_End();
+
     [DllImport("DLLtry.dll")]
     private static extern int getNote();
     [DllImport("DLLtry.dll")]
@@ -65,5 +69,10 @@ public class MIDI_IN : MonoBehaviour
         int n = getNote();
         int v = getVelo();
         Debug.Log("note " + n + " velo " + v);
-    } 
+    }
+
+    private void OnDestroy()
+    {
+        MIDI_End();
+    }
 }

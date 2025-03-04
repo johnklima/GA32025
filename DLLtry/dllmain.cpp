@@ -25,6 +25,7 @@
 
 int P1 = 0;
 int P2 = 0;
+HMIDIIN hMidiDevice = NULL;
 
 UINT hello()
 {
@@ -95,7 +96,7 @@ void CALLBACK MidiInProc(HMIDIIN hMidiIn, UINT wMsg, DWORD dwInstance, DWORD dwP
 
 int mymain()
 {
-	HMIDIIN hMidiDevice = NULL;;
+	
 	DWORD nMidiPort = 0;
 	UINT nMidiDeviceNum;
 	MMRESULT rv;
@@ -132,6 +133,32 @@ extern "C" {          // we need to export the C interface
 #ifdef __cplusplus
 }
 #endif
+
+#ifdef __cplusplus    // If used by C++ code, 
+extern "C" {          // we need to export the C interface
+#endif
+
+__declspec(dllexport) int __cdecl MIDI_End()
+{
+
+
+	MMRESULT rv;
+
+
+
+	rv = midiInClose (hMidiDevice);
+	if (rv != MMSYSERR_NOERROR) {
+		fprintf(stderr, "midiInClose() failed...rv=%d", rv);
+		return -1;
+	}
+
+	return 1;
+}
+
+#ifdef __cplusplus
+}
+#endif
+
 
 #ifdef __cplusplus    // If used by C++ code, 
 extern "C" {          // we need to export the C interface
