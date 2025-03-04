@@ -18,7 +18,7 @@ public class MIDI_IN : MonoBehaviour
     private static extern uint  midiInGetDevCaps(uint index, uint blah, uint woof);
 
     [DllImport("DLLtry.dll")]
-    private static extern int myPuts();
+    private static extern int MIDI_Start();
     [DllImport("DLLtry.dll")]
     private static extern int getNote();
     [DllImport("DLLtry.dll")]
@@ -29,7 +29,7 @@ public class MIDI_IN : MonoBehaviour
     {
         
 
-        int r = myPuts();
+        int r = MIDI_Start();
         Debug.Log("myPuts " + r);
 
 
