@@ -14,6 +14,8 @@ public class CharacterMarkerHandler : AudioTimelineMarkerHandler
     {
         //to attenuate volume we will simply move the audio emmiter down/up from hell
         objAudio.localPosition = Vector3.down * 666;
+
+    
     }
 
     public override void HandleIt(bool onoff)
@@ -28,7 +30,7 @@ public class CharacterMarkerHandler : AudioTimelineMarkerHandler
         //so bring it up.
         
 
-        GetComponent<Animator>().SetBool("isTalking", isTalking);
+        //GetComponent<Animator>().SetBool("isTalking", isTalking);
 
         if (isTalking)
         {
@@ -44,5 +46,17 @@ public class CharacterMarkerHandler : AudioTimelineMarkerHandler
     public FMODUnity.StudioEventEmitter getEmmitter()
     {
         return objAudio.GetComponent<FMODUnity.StudioEventEmitter>();
+    }
+
+    bool start = true;
+    //FMOD needs time to build itself before the timeline actually starts
+    private void LateUpdate()
+    {
+        if(start)
+        {
+            //perhaps this goes in a trigger event?
+            GetComponent<ScriptUsageTimeline>().startTimeline(0);
+            start = false;
+        }
     }
 }

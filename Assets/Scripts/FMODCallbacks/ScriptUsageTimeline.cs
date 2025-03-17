@@ -38,7 +38,7 @@ class ScriptUsageTimeline : MonoBehaviour
         eventInstance.setTimelinePosition(milliseconds);
     }
 
-    class TimelineInfo
+    public class TimelineInfo
     {
         public int CurrentMusicBar = 0;
         public FMOD.StringWrapper LastMarker = new FMOD.StringWrapper();
@@ -47,7 +47,7 @@ class ScriptUsageTimeline : MonoBehaviour
         public AudioTimelineMarkerHandler handler;
     }
 
-    TimelineInfo timelineInfo;
+    public TimelineInfo timelineInfo;
 
     GCHandle timelineHandle;
 
@@ -60,6 +60,9 @@ class ScriptUsageTimeline : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("START SCRIPT USAGE " + EventName);
+
+
         timelineInfo = new TimelineInfo();
 
         timelineInfo.owner = transform;             //this object
@@ -78,9 +81,8 @@ class ScriptUsageTimeline : MonoBehaviour
         eventInstance.setUserData(GCHandle.ToIntPtr(timelineHandle));
 
         eventInstance.setCallback(markerCallback, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT | FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
-        
 
-        
+                
         
     }
 
@@ -95,6 +97,9 @@ class ScriptUsageTimeline : MonoBehaviour
 
         if(FMODAudioObject)
         {
+
+            Debug.Log("activate timeline " + transform.name);
+
             FMODAudioObject.SetActive(true);
 
             FMODAudioObject.GetComponent<FMODUnity.StudioEventEmitter>()
@@ -136,6 +141,8 @@ class ScriptUsageTimeline : MonoBehaviour
     [AOT.MonoPInvokeCallback(typeof(FMOD.Studio.EVENT_CALLBACK))]
     static FMOD.RESULT BeatEventCallback(FMOD.Studio.EVENT_CALLBACK_TYPE type, IntPtr instancePtr, IntPtr parameterPtr)
     {
+        Debug.Log("EVENT CALLBACK!!");
+        
         FMOD.Studio.EventInstance instance = new FMOD.Studio.EventInstance(instancePtr);
 
         // Retrieve the user data
@@ -157,8 +164,9 @@ class ScriptUsageTimeline : MonoBehaviour
                     {
                         var parameter = (FMOD.Studio.TIMELINE_BEAT_PROPERTIES)Marshal.PtrToStructure(parameterPtr, typeof(FMOD.Studio.TIMELINE_BEAT_PROPERTIES));
                         timelineInfo.CurrentMusicBar = parameter.bar;
+                        break;
                     }
-                    break;
+                    
                 case FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER:
                     {
                         var parameter = (FMOD.Studio.TIMELINE_MARKER_PROPERTIES)Marshal.PtrToStructure(parameterPtr, typeof(FMOD.Studio.TIMELINE_MARKER_PROPERTIES));
@@ -181,10 +189,16 @@ class ScriptUsageTimeline : MonoBehaviour
                             //otherwise, handle me with a false condition, it's not me.
                             timelineInfo.handler.HandleIt(false);
                         }
-                        
-
+                        break;
                     }
-                    break;
+                    
+                case FMOD.Studio.EVENT_CALLBACK_TYPE.DESTROYED:
+                    {
+                        // Now the event has been destroyed, unpin the timeline memory so it can be garbage collected
+                        timelineHandle.Free();
+                        break;
+                    }
+                    
             }
         }
         return FMOD.RESULT.OK;
