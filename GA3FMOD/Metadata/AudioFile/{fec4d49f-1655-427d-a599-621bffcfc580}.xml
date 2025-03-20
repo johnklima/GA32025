@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{fec4d49f-1655-427d-a599-621bffcfc580}">
+		<property name="assetPath">
+			<value>mixkit-footsteps-in-the-forest-ground-1230.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>34.20138321995465</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{bed8cd67-04e5-4bf6-a63f-5d763784201f}</destination>
+		</relationship>
+	</object>
+</objects>

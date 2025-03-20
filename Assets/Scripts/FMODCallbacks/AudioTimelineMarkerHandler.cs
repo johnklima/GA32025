@@ -5,5 +5,11 @@ using UnityEngine;
 abstract public class AudioTimelineMarkerHandler : MonoBehaviour
 {
     abstract public void HandleIt(bool onoff);
+
+    virtual public void dothat()
+    {
+
+        //do something
+    }
     
 }

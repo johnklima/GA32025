@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{8a440928-d54b-436d-9d73-b635816e40cd}">
+		<property name="assetPath">
+			<value>voice of prof.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>12.263129251700681</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{bed8cd67-04e5-4bf6-a63f-5d763784201f}</destination>
+		</relationship>
+	</object>
+</objects>

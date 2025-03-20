@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{4a0dce42-773b-4939-9132-707c51f47478}">
+		<property name="assetPath">
+			<value>mixkit-footsteps-on-tall-grass-532.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>23.102925170068026</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{bed8cd67-04e5-4bf6-a63f-5d763784201f}</destination>
+		</relationship>
+	</object>
+</objects>

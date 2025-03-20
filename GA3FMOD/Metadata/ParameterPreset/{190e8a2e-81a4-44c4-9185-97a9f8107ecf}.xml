@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{190e8a2e-81a4-44c4-9185-97a9f8107ecf}">
+		<property name="name">
+			<value>Wind2</value>
+		</property>
+		<relationship name="folder">
+			<destination>{3327bb4d-7d75-4cf3-80d7-1c0530a4cd09}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{34031745-b5d3-46ee-bfc9-a865ada27848}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{34031745-b5d3-46ee-bfc9-a865ada27848}">
+		<property name="minimum">
+			<value>-1</value>
+		</property>
+		<property name="initialValue">
+			<value>-1</value>
+		</property>
+	</object>
+</objects>

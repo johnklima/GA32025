@@ -18,6 +18,15 @@ public class CharacterMarkerHandler : AudioTimelineMarkerHandler
     
     }
 
+    public override void dothat()
+    {
+        base.dothat();
+
+        //do something
+
+
+    }
+
     public override void HandleIt(bool onoff)
     {
         Debug.Log(transform.name + " Handled It!!");
